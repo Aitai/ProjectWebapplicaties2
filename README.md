@@ -1,4 +1,4 @@
-# IWA Applicatie
+# IWA Application
 
 Built with [Laravel Lumen](https://lumen.laravel.com/).
 ## Requirements
@@ -9,7 +9,13 @@ Built with [Laravel Lumen](https://lumen.laravel.com/).
 
 - Docker
 
-# Installation
+This application consists of two parts, a backend and a frontend, which both need to run for this application to work.
+
+[Instructions for running the backend](#installing-and-running-the-backend)
+
+[Instructions for running the front-end](#installing-and-running-the-front-end)
+
+# Installing and running the backend
 
 The recommended way to use this program is with docker, which makes it very easy to run. Go through the following instructions to finish the installation and to start the application.
 
@@ -51,8 +57,8 @@ To fill these tables with some default data you can run the `php artisan db:seed
 ### Running the project
 The project can now be used with the following command `php artisan serve` which will give you the API URL to be used in the front-end.
 
-## Front-end
-To run the front-end read the *Front-end/README.md* file for instructions.
+## Installing and running the front-end
+To run the front-end read the [front-end instructions](Frontend/README.md).
 
 ### Adding station measurements
 Weather data / measurements will not be generated with the `php artisan db:seed` command and should be generated with the WeatherGen application.
