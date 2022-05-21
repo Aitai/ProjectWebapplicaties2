@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>31219a02-4a9d-488e-b7b3-7f29786ae2b3</OriginalElement>
+  <nodes>
+    <node x="58.16666666666663" y="1004.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.maintenance</node>
+    <node x="257.16666666666663" y="883.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.measurements</node>
+    <node x="142.66666666666654" y="0.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.users</node>
+    <node x="534.3333333333333" y="0.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.jobs</node>
+    <node x="157.66666666666654" y="546.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.stations</node>
+    <node x="157.66666666666663" y="283.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.timezones</node>
+    <node x="798.3333333333333" y="0.0">31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.migrations</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.measurements" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.users" relationship="REFERENCES">
+      <point x="-59.66666666666666" y="-214.5" />
+      <point x="287.0" y="842.0" />
+      <point x="97.22416666666658" y="842.0" />
+      <point x="97.22416666666658" y="262.0" />
+      <point x="126.99999999999989" y="262.0" />
+      <point x="126.99999999999989" y="252.0" />
+      <point x="194.91666666666654" y="252.0" />
+      <point x="-52.25" y="115.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.timezones" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.users" relationship="REFERENCES">
+      <point x="-44.75" y="-104.5" />
+      <point x="202.41666666666663" y="262.0" />
+      <point x="126.99999999999989" y="262.0" />
+      <point x="126.99999999999989" y="252.0" />
+      <point x="194.91666666666654" y="252.0" />
+      <point x="-52.25" y="115.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.stations" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.users" relationship="REFERENCES">
+      <point x="-59.66666666666666" y="-137.5" />
+      <point x="187.4999999999999" y="519.0" />
+      <point x="147.16666666666663" y="519.0" />
+      <point x="147.16666666666663" y="262.0" />
+      <point x="126.99999999999989" y="262.0" />
+      <point x="126.99999999999989" y="252.0" />
+      <point x="194.91666666666654" y="252.0" />
+      <point x="-52.25" y="115.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.measurements" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.stations" relationship="REFERENCES">
+      <point x="0.0" y="-214.5" />
+      <point x="346.66666666666663" y="862.0" />
+      <point x="247.16666666666654" y="862.0" />
+      <point x="0.0" y="137.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.maintenance" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.stations" relationship="REFERENCES">
+      <point x="0.0" y="-93.5" />
+      <point x="147.66666666666663" y="862.0" />
+      <point x="247.16666666666654" y="862.0" />
+      <point x="0.0" y="137.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.stations" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.timezones" relationship="REFERENCES">
+      <point x="0.0" y="-137.5" />
+      <point x="0.0" y="104.5" />
+    </edge>
+    <edge source="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.maintenance" target="31219a02-4a9d-488e-b7b3-7f29786ae2b3.TABLE:hanze_project_23.users" relationship="REFERENCES">
+      <point x="59.666666666666686" y="-93.5" />
+      <point x="207.33333333333331" y="852.0" />
+      <point x="397.1091666666666" y="852.0" />
+      <point x="397.1091666666666" y="262.0" />
+      <point x="367.3333333333332" y="262.0" />
+      <point x="367.3333333333332" y="252.0" />
+      <point x="299.4166666666665" y="252.0" />
+      <point x="52.25" y="115.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.49774774774774777" showDependencies="false" x="490.0" y="656.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

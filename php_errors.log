@@ -1,0 +1,4 @@
+[02-Apr-2022 17:27:25 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID 'Europe/Amsterdam,' is invalid in /Users/reinierdelaparra/PhpstormProjects/hanze-project-23/bootstrap/app.php on line 11
+[02-Apr-2022 17:33:17 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID 'Europe/Amsterdam,' is invalid in /Users/reinierdelaparra/PhpstormProjects/hanze-project-23/bootstrap/app.php on line 11
+[07-Apr-2022 18:58:37 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID 'Europe/Amsterdam,' is invalid in /Users/reinierdelaparra/PhpstormProjects/hanze-project-23/bootstrap/app.php on line 11
+[07-Apr-2022 18:58:52 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID 'Europe/Amsterdam,' is invalid in /Users/reinierdelaparra/PhpstormProjects/hanze-project-23/bootstrap/app.php on line 11
