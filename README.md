@@ -48,11 +48,8 @@ After correcting these values you should create the database by using a GUI such
 command `CREATE DATABASE iwa`
 
 ### Start migrations
-Before running the migrations you should import the *ProjectSemester2Stations.sql* file in the newly created database.
-This file will create all the stations and countries used in the application.
-
-After doing this you can run the `php artisan migrate` command which will create the rest of the tables in the database.
-To fill these tables with some default data you can run the `php artisan db:seed` command.
+Run the `php artisan migrate` command which will create the needed tables in the database.
+Afterwards, run the `php artisan db:seed` command to fill the database with the necessary data.
 
 ### Running the project
 The project can now be used with the following command `php artisan serve` which will give you the API URL to be used in the front-end.
