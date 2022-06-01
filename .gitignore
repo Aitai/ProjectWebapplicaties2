@@ -1,7 +1,14 @@
-/vendor
-/.idea
+# General
+.idea/
 Homestead.json
 Homestead.yaml
-.env
 .phpunit.result.cache
-/docker/
+docker/
+
+# Backend
+Backend/vendor
+Backend/.env
+
+# Front-end
+Frontend/node_modules/
+Frontend/package-lock.json
