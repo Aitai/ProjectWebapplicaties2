@@ -9,7 +9,9 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('tw-elements/dist/plugin')
+    ],
     // Testing darkmode
     darkMode: "class",
 };

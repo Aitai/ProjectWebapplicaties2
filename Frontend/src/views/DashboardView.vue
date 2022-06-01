@@ -1,8 +1,24 @@
-<template>Dashboard</template>
+<template>
+  Dashboard
+</template>
 
 <script>
 export default {
-    name: "DashboardView",
+  mounted() {
+    this.getPeaks()
+  },
+  methods: {
+    getPeaks() {
+      this.$store.dispatch("weather/getPeaks");
+    },
+    getDates() {
+      return this.$store.state.weather.dates;
+    },
+    getTemps() {
+      return this.$store.state.weather.temps;
+    }
+  },
+  name: "DashboardView",
 };
 </script>
 

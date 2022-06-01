@@ -11,6 +11,7 @@
     "@headlessui/vue": "^1.5.0",
     "@heroicons/vue": "^1.0.6",
     "axios": "^0.26.1",
+    "tw-elements": "^1.0.0-alpha12",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"

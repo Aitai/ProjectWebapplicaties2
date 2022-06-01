@@ -34,6 +34,5 @@ function handleResponse(response) {
             (response.data && response.data.message) || response.statusText;
         return Promise.reject(error);
     }
-
     return response.data;
 }

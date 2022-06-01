@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class WeatherData extends Model
 {
@@ -32,4 +33,16 @@ class WeatherData extends Model
     ];
 
     public $timestamps = false;
+
+    public static function getPeakTemperatures() : array
+    {
+        $arr = DB::select("SELECT MAX(temp) as max_temp, CAST(datetime AS DATE) AS date FROM weather_data WHERE datetime >= (CURDATE() - INTERVAL 4 WEEK) GROUP BY date ORDER BY date DESC;");
+        $dates = array();
+        $values = array();
+        foreach ($arr as $item) {
+            $dates[] = $item->date;
+            $values[] = $item->max_temp;
+        }
+        return ['dates' => $dates, 'temps' => $values];
+    }
 }
