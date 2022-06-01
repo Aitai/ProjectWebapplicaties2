@@ -1,8 +1,8 @@
 <template>
     <div class="min-h-full">
-        <Header />
-        <main>
-            <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <Header v-show="isAuthenticated" />
+        <main class="flex flex-row min-h-screen justify-center items-center">
+            <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 justify-center justify-items-center">
                 <div class="px-4 py-6 sm:px-0">
                     <RouterView />
                 </div>
@@ -18,5 +18,10 @@ export default {
     components: {
         Header,
     },
+    data() {
+      return {
+        isAuthenticated: localStorage.getItem('user') !== null
+      }
+    }
 };
 </script>

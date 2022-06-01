@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use App\Models\WeatherData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class WeatherStationsController extends Controller
@@ -23,15 +24,18 @@ class WeatherStationsController extends Controller
 
     public function receive(Request $request)
     {
-
-
         if ($request->post('WEATHERDATA') == null) {
             return "Error";
         }
 
         foreach ($request->post('WEATHERDATA') as $row) {
-            $data = new WeatherData;
+            $station = Station::where("name", $row['STN'])->first();
 
+            if (!Station::isInRange($station->latitude, $station->longitude)) {
+                continue;
+            }
+
+            $data = new WeatherData;
             $data->station_name = $row['STN'];
             $data->datetime = $row['DATE'] . ' ' . $row['TIME'];
             $data->temp = $row['TEMP'] == "None" ? null : $row['TEMP'];
@@ -102,5 +106,10 @@ class WeatherStationsController extends Controller
         }
 
         return $new_stations + $stations->toArray();
+    }
+
+    public function getPeaks(): array
+    {
+        return WeatherData::getPeakTemperatures();
     }
 }

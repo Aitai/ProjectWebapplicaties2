@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import store from "./store/index";
 import router from "./router";
 import "./index.css";
+
 import { axios } from "@/helpers/axios.js";
 
 const app = createApp(App);

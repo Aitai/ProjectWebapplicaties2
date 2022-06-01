@@ -111,4 +111,12 @@ class Station extends Model
 
         return $averages;
     }
+
+    public static function isInRange($lat, $lng): bool
+    {
+        $tehranLat = 35.709081;
+        $tehranLng = 51.377954;
+        $distance = (6371 * acos(cos(deg2rad($lat)) * cos(deg2rad($tehranLat)) * cos(deg2rad($tehranLng) - deg2rad($lng)) + sin(deg2rad($lat)) * sin(deg2rad($tehranLat))));
+        return $distance <= 2000;
+    }
 }

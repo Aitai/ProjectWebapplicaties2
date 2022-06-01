@@ -1,7 +1,6 @@
 <template>
     <div
-        class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700"
-    >
+        class="p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
         <div class="space-y-6">
             <h5
                 class="text-xl font-medium text-gray-900 dark:text-white text-center"
@@ -47,15 +46,6 @@
             >
                 Inloggen
             </button>
-            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                Nog geen account?
-                <a
-                    href="#"
-                    class="text-blue-700 hover:underline dark:text-blue-500"
-                >
-                    Account aanmaken
-                </a>
-            </div>
         </div>
     </div>
 </template>
@@ -63,7 +53,9 @@
 <script>
 export default {
     mounted() {
-        console.log(import.meta.env.VITE_BASE_URL);
+      if (localStorage.hasOwnProperty('user')) {
+        this.$router.replace("/dashboard");
+      }
     },
     methods: {
         login() {
@@ -71,7 +63,7 @@ export default {
             this.$axios
                 .post("/authentication", {
                     email: this.email,
-                    password: this.password,
+                    password: this.password
                 })
                 .then((success) => {
                     let user = {
