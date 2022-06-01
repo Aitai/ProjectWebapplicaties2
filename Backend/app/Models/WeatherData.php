@@ -36,13 +36,6 @@ class WeatherData extends Model
 
     public static function getPeakTemperatures() : array
     {
-        $arr = DB::select("SELECT MAX(temp) as max_temp, CAST(datetime AS DATE) AS date FROM weather_data WHERE datetime >= (CURDATE() - INTERVAL 4 WEEK) GROUP BY date ORDER BY date DESC;");
-        $dates = array();
-        $values = array();
-        foreach ($arr as $item) {
-            $dates[] = $item->date;
-            $values[] = $item->max_temp;
-        }
-        return ['dates' => $dates, 'temps' => $values];
+        return  DB::select("SELECT MAX(WD.temp) as max_temp, CAST(WD.datetime AS DATE) AS date, GL.town FROM weather_data AS WD INNER JOIN geolocation AS GL ON WD.station_name = GL.station_name WHERE WD.datetime >= (CURDATE() - INTERVAL 4 WEEK) GROUP BY date ORDER BY date DESC;");
     }
 }
