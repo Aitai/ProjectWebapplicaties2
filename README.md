@@ -37,9 +37,9 @@ First you should install all the dependencies by executing `composer install` fr
 Next you'll want to copy the *.env.example* file to the same folder and name it `.env`
 In this file you should set your database environment variables such as
 
-`DB_DATABASE=iwa`         The database to be used for the Laravel application 
+`DB_DATABASE=iwa`         The database to be used for the Laravel application
 
-`DB_USERNAME=homestead`   The username used for database authentication 
+`DB_USERNAME=homestead`   The username used for database authentication
 
 `DB_PASSWORD=secret`      The password used for database authentication
 
@@ -60,4 +60,4 @@ To run the front-end read the [front-end instructions](Frontend/README.md).
 ### Adding station measurements
 Weather data / measurements will not be generated with the `php artisan db:seed` command and should be generated with the WeatherGen application.
 The URL used to send these generated measurements is */stations/sendWeatherData*.
-You will need to turn on HTTP logging.
+You will need to turn on HTTP logging in the WeatherGen application.
