@@ -27,7 +27,7 @@ endpoints:
         name: password
         description: 'Password of the user.'
         required: true
-        example: aut
+        example: sapiente
         type: string
         custom: []
     responses:
@@ -46,7 +46,7 @@ endpoints:
       -
         status: 429
         content: |-
-          error": {
+          "error": {
            "code": 429,
            "message": "Too Many Attempts."
           }
@@ -59,7 +59,7 @@ endpoints:
     uri: authentication/jwt
     metadata:
       title: 'Renew token'
-      description: 'With this endpoint you can request an new token, the current one should be valid.'
+      description: 'With this endpoint you can request a new token, the current one should be valid.'
       authenticated: true
       custom: []
     headers:
@@ -78,115 +78,6 @@ endpoints:
            @response 401 "error": {
            "code": 401,
            "message": "Unauthorized."
-          }
-        headers: []
-        description: '200'
-      -
-        status: 429
-        content: |-
-          error": {
-           "code": 429,
-           "message": "Too Many Attempts."
-          }
-        headers: []
-        description: '429'
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: authentication/register
-    metadata:
-      title: 'Gebruiker registratie'
-      description: |-
-        een gebruiker kan een account aanmaken bij ons. als dit request successvol is krijgt de gebruiker een validatie code in de mail.
-        De validatie code moet naar de validate endpoint gepost worden voor dat het account actief wordt.
-        de gebruiker krijgt hier de meest basis rol.
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: 'email address van de gebruiker.'
-        required: true
-        example: user@project.local
-        type: string
-        custom: []
-      password:
-        name: password
-        description: 'nieuw wachtwoord.'
-        required: true
-        example: asdasd
-        type: string
-        custom: []
-    responses:
-      -
-        status: 200
-        content: |-
-          "success": {
-           "message": "Successful"
-          }
-           @response 422 "error": {
-           "code": 422,
-           "message": "Invalid request."
-          }
-        headers: []
-        description: '200'
-      -
-        status: 429
-        content: |-
-          "error": {
-           "code": 429,
-           "message": "Too Many Attempts."
-          }
-        headers: []
-        description: '429'
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: 'authentication/{id}/Verify'
-    metadata:
-      title: 'Sctiveer gebruikers account'
-      description: |-
-        na het ontvangen van de mail met de validate code.
-        Deze moet door de gebruiker worden ingevoerd om te bevestigen dat die zij/haar account is
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: ''
-        required: true
-        example: vel
-        type: string
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      validationCode:
-        name: validationCode
-        description: 'deze code heeft de gebruiker in de mail gekregen.'
-        required: true
-        example: et
-        type: string
-        custom: []
-    responses:
-      -
-        status: 200
-        content: |-
-          "success": {
-           "message": "account gevalideerd"
-          }
-           @response 422 "error": {
-           "code": 422,
-           "message": "Invalid request."
           }
         headers: []
         description: '200'

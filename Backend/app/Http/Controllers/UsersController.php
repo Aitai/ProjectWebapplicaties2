@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 /**
  * @group User management
  *
- * APIs for managing users
+ * API's for managing users
  */
 class UsersController extends Controller
 {
@@ -21,38 +21,6 @@ class UsersController extends Controller
     public function view()
     {
         return Auth::user();
-    }
-
-    /**
-     *  Update my profile
-     *
-     * @param Request $request
-     * @param string $uuid
-     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory|void
-     */
-    public function update(Request $request)
-    {
-        $user = Auth::user();
-        $validated = $this->validateRequest($request);
-        if ($user->update($validated))
-            return response(['message' => 'Updated Successfully'], 200);
-    }
-
-    /**
-     *
-     * Delete my account
-     *
-     * @param string $uuid
-     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory|void
-     */
-    public function delete(string $uuid)
-    {
-
-        $user = User::findOrFail($uuid);
-        Gate::authorize('manage-users', $user);
-
-        if ($user->delete())
-            return response('Deleted Successfully', 200);
     }
 
     private function validateRequest(Request $request)

@@ -34,7 +34,7 @@ class AuthenticateController extends Controller
      *  "code": 401,
      *  "message": "Invalid credentials."
      * }
-     * @response 429  error": {
+     * @response 429 "error": {
      *  "code": 429,
      *  "message": "Too Many Attempts."
      * }
@@ -56,7 +56,7 @@ class AuthenticateController extends Controller
     /**
      * Renew token
      *
-     * With this endpoint you can request an new token, the current one should be valid.
+     * With this endpoint you can request a new token, the current one should be valid.
      * @authenticated
      *
      * @response {
@@ -66,7 +66,7 @@ class AuthenticateController extends Controller
      *  "code": 401,
      *  "message": "Unauthorized."
      * }
-     * @response 429  error": {
+     * @response 429 "error": {
      *  "code": 429,
      *  "message": "Too Many Attempts."
      * }
