@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Hanze Project 2.3",
-        "_postman_id": "555674ac-c4bd-466b-a8fd-fbf189dfea08",
+        "_postman_id": "b141d545-8801-4e3c-a304-8900000e311e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"development@dxmusic.nl\",\"password\":\"sapiente\"}"
+                            "raw": "{\"email\":\"development@dxmusic.nl\",\"password\":\"quo\"}"
                         },
                         "description": "This is used for first time authentication.",
                         "auth": {
@@ -333,7 +333,7 @@
                                 {
                                     "id": "station_name",
                                     "key": "station_name",
-                                    "value": "aliquam",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]

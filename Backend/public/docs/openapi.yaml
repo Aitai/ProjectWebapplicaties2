@@ -57,7 +57,7 @@ paths:
                 password:
                   type: string
                   description: 'Password of the user.'
-                  example: sapiente
+                  example: quo
               required:
                 - email
                 - password
@@ -951,7 +951,7 @@ paths:
         in: path
         name: station_name
         description: ''
-        example: aliquam
+        example: voluptatem
         required: true
         schema:
           type: string

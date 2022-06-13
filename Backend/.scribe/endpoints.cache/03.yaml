@@ -114,7 +114,7 @@ endpoints:
         name: station_name
         description: ''
         required: true
-        example: aliquam
+        example: voluptatem
         type: string
         custom: []
     queryParameters: []

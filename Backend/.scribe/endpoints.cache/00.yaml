@@ -29,7 +29,7 @@ endpoints:
         name: password
         description: 'Password of the user.'
         required: true
-        example: sapiente
+        example: quo
         type: string
         custom: []
     responses:
