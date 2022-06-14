@@ -27,7 +27,7 @@ endpoints:
         name: password
         description: 'Password of the user.'
         required: true
-        example: quo
+        example: password
         type: string
         custom: []
     responses:
@@ -37,12 +37,17 @@ endpoints:
           {
            "token": "String"
           }
-           @response 401 "error": {
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: |-
+          "error": {
            "code": 401,
            "message": "Invalid credentials."
           }
         headers: []
-        description: '200'
+        description: '401'
       -
         status: 429
         content: |-
@@ -75,12 +80,17 @@ endpoints:
           {
            "token": "String"
           }
-           @response 401 "error": {
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: |-
+          "error": {
            "code": 401,
            "message": "Unauthorized."
           }
         headers: []
-        description: '200'
+        description: '401'
       -
         status: 429
         content: |-

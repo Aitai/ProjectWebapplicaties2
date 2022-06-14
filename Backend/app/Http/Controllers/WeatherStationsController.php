@@ -82,7 +82,7 @@ class WeatherStationsController extends Controller
     /**
      * Get weather data using the station name.
      *
-     * @bodyParam station_name string required Valid station name. Example: 100020
+     * @urlParam station_name string required Valid station name. Example: 100020
      *
      * @response 200 {
      *   "station": "String",
@@ -105,6 +105,10 @@ class WeatherStationsController extends Controller
 
     /**
      * Get a list of available stations.
+     *
+     * @bodyParam page int Page number. Example: 1
+     * @bodyParam ordered_row string On which row the data is sorted. Example: temp
+     * @bodyParam order_by string The order in which the data is sorted. Example: asc
      *
      * @response 200 {
      *   "data": "Array",

@@ -25,12 +25,12 @@ class AuthenticateController extends Controller
      * This is used for first time authentication.
      *
      * @bodyParam email string required E-mail of the user. Example: development@dxmusic.nl
-     * @bodyParam password string required  Password of the user.
+     * @bodyParam password string required Password of the user. Example: password
      *
      * @response 200 {
      *  "token": "String"
      * }
-     *  @response 401 "error": {
+     * @response 401 "error": {
      *  "code": 401,
      *  "message": "Invalid credentials."
      * }
@@ -62,7 +62,7 @@ class AuthenticateController extends Controller
      * @response {
      *  "token": "String"
      * }
-     *  @response 401 "error": {
+     * @response 401 "error": {
      *  "code": 401,
      *  "message": "Unauthorized."
      * }

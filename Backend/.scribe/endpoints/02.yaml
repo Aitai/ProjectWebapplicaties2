@@ -10,7 +10,7 @@ endpoints:
     metadata:
       title: 'Show my user profile'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -23,10 +23,10 @@ endpoints:
         status: 500
         content: |-
           {
-              "message": "Key may not be empty",
-              "exception": "InvalidArgumentException",
+              "message": "Wrong number of segments",
+              "exception": "UnexpectedValueException",
               "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/firebase/php-jwt/src/JWT.php",
-              "line": 88,
+              "line": 92,
               "trace": [
                   {
                       "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/app/Providers/AuthServiceProvider.php",
