@@ -5,7 +5,7 @@
             <h5
                 class="text-xl font-medium text-gray-900 dark:text-white text-center"
             >
-                IWA
+                Society of Protection of Birds
             </h5>
             <p ref="errorField" class="text-red-600" />
             <div>

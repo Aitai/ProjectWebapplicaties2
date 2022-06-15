@@ -97,7 +97,7 @@ export default {
     methods: {
         getStation(stationName) {
             this.$store.dispatch("station/getData", stationName);
-            document.title = "Weerstation " + stationName + " - IWA";
+            document.title = "Weerstation " + stationName + " - Society of Protection of Birds";
         },
     },
     setup() {

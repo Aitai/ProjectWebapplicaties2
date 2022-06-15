@@ -32,7 +32,7 @@
                             v-show="!darkMode"
                             class="h-12"
                             src="@/assets/LogoSoPoB.png"
-                            alt="Logo IWA"
+                            alt="Logo Society of Protection of Birds"
                         />
                         <img
                             v-show="darkMode"
