@@ -238,7 +238,7 @@ export default {
     methods: {
         getStations() {
             this.$store.dispatch("station/getAll", [1, "name", "asc"]);
-            document.title = "Overzicht weerstations " + " - IWA";
+            document.title = "Overzicht weerstations " + " - Society of Protection of Birds";
         },
         changePage(pageNum) {
             if (pageNum >= 1 && pageNum <= this.pagination.total_pages) {
