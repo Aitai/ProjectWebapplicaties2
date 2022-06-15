@@ -23,6 +23,7 @@ if (process.env.NODE_ENV === 'production') {
       console.log('New content is available; please refresh.')
     },
     offline () {
+      // Show popup telling the user that they are offline
       console.log('No internet connection found. App is running in offline mode.')
     },
     error (error) {
