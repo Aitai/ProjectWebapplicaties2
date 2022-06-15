@@ -192,7 +192,9 @@ const user = {
 const navigation = [
     { name: "Dashboard", href: "home" },
     { name: "Weerstations", href: "station.all" },
+    { name: "Grafieken", href: "graphs" },
 ];
+
 const userNavigation = [
     { name: "Your Profile", href: "#" },
     { name: "Settings", href: "#" },
@@ -230,6 +232,7 @@ export default {
             user,
             navigation,
             userNavigation,
+
         };
     },
 };

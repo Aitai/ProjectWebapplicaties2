@@ -17,5 +17,15 @@ function handleResponse(response) {
             (response.data && response.data.message) || response.statusText;
         return Promise.reject(error);
     }
-    return response.data;
+    // this.for
+    // console.log(new Blob(response.data))
+    //
+    // const link = document.createElement('a');
+    // link.href = window.URL.createObjectURL(new Blob([response.data]));;
+    // link.setAttribute('download', 'export.xml'); //or any other extension
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link)
+    // // console.log(new Blob([response.data]))
+    // return response.data;
 }

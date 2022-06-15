@@ -129,4 +129,6 @@ $app->router->group([
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
+$app->register(Mtownsend\ResponseXml\Providers\ResponseXmlServiceProvider::class);
+
 return $app;

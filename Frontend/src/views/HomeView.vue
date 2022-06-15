@@ -63,7 +63,7 @@ export default {
             this.$axios
                 .post("/authentication", {
                     email: this.email,
-                    password: this.password
+                    password: this.password,
                 })
                 .then((success) => {
                     let user = {
