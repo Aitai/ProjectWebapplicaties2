@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use App\Models\WeatherData;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use LSS\Array2XML;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Xml;
+use SimpleXMLElement;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class WeatherStationsController extends Controller
@@ -111,5 +115,33 @@ class WeatherStationsController extends Controller
     public function getPeaks(): array
     {
         return WeatherData::getPeakTemperatures();
+    }
+
+    public function getXmlExport()
+    {
+        $data = WeatherData::with("station")->with("geoLocation")->with("correction")->where("datetime", ">=", Carbon::now()->addWeek(-4))->get();
+
+        $xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><weather></weather>");
+
+        $this->arrayToXML($data->toArray(),$xml);
+        return response()->streamDownload(function () use ($xml) {
+            echo $xml->asXML();
+        }, "export.xml");
+    }
+
+    private function arrayToXML($array, &$xml_user_info) {
+        foreach($array as $key => $value) {
+            if(is_array($value)) {
+                if(!is_numeric($key)){
+                    $subnode = $xml_user_info->addChild("Item$key");
+                    $this->arrayToXML($value, $subnode);
+                }else{
+                    $subnode = $xml_user_info->addChild("Item$key");
+                    $this->arrayToXML($value, $subnode);
+                }
+            }else {
+                $xml_user_info->addChild("$key","$value");
+            }
+        }
     }
 }
