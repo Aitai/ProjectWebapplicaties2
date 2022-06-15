@@ -31,14 +31,14 @@
                         <img
                             v-show="!darkMode"
                             class="h-12"
-                            src="@/assets/LogoIWA.svg"
+                            src="@/assets/LogoSoPoB.png"
                             alt="Logo IWA"
                         />
                         <img
                             v-show="darkMode"
                             class="h-12"
-                            src="@/assets/LogoIWADarkMode.svg"
-                            alt="Logo IWA"
+                            src="@/assets/LogoSoPoBDarkMode.png"
+                            alt="Logo Society of Protection of Birds"
                         />
 
                         <!--
