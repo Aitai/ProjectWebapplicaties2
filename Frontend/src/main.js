@@ -6,6 +6,7 @@ import router from "./router";
 import "./index.css";
 
 import { axios } from "@/helpers/axios.js";
+import './registerServiceWorker'
 
 const app = createApp(App);
 
