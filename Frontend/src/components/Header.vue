@@ -9,16 +9,9 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         <img
-                            v-show="!darkMode"
                             class="h-12"
-                            src="@/assets/LogoIWA.svg"
-                            alt="Logo IWA"
-                        />
-                        <img
-                            v-show="darkMode"
-                            class="h-12"
-                            src="@/assets/LogoIWADarkMode.svg"
-                            alt="Logo IWA"
+                            src="@/assets/sopob.png"
+                            alt="Logo SoPoB"
                         />
                     </div>
                     <div class="hidden md:block">
