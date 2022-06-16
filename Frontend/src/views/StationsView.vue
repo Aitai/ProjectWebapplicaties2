@@ -6,7 +6,7 @@
             <h3
                 class="text-lg leading-6 font-medium text-gray-900 dark:text-white"
             >
-                Weerstations
+                Weather stations
             </h3>
             <!-- <p class="mt-1 max-w-2xl text-sm text-gray-500"></p> -->
 
@@ -20,7 +20,7 @@
                                 <legend
                                     class="text-base font-medium text-gray-900 dark:text-white"
                                 >
-                                    Te vergelijken velden
+                                    Filters
                                 </legend>
                                 <div
                                     class="grid md:grid-cols-4 xl:grid-cols-6 sm:grid-cols-2"
@@ -211,22 +211,22 @@ export default {
                 longitude: ["Longitude", false],
                 latitude: ["Latitude", false],
                 elevation: ["Elevation", false],
-                is_active: ["Actief", true],
-                temp: ["Temperatuur", true],
-                dew_point_temp: ["Dauwpunt temperatuur", false],
-                station_air_pressure: ["Station Luchtdruk", true],
-                sea_level_air_pressure: ["Zeeniveau Luchtdruk", true],
-                visibility: ["Zicht", true],
-                wind_speed: ["Windsnelheid", true],
-                precipitation: ["Neerslag", true],
-                snow_depth: ["Sneeuwdiepte", false],
-                cloud_cover_percentage: ["Bewolking(%)", true],
-                wind_direction: ["Windrichting", true],
-                frost: ["Vorst", false],
-                rain: ["Regen", false],
-                snow: ["Sneeuw", false],
-                hail: ["Hagel", false],
-                thunderstorm: ["Onweer", false],
+                is_active: ["Active", false],
+                temp: ["Temperature", true],
+                dew_point_temp: ["Dew point temperature", false],
+                station_air_pressure: ["Station air pressure", true],
+                sea_level_air_pressure: ["Sealevel air pressure", true],
+                visibility: ["Visibility", true],
+                wind_speed: ["Wind speed", true],
+                precipitation: ["Precipitation", true],
+                snow_depth: ["Snow depth", false],
+                cloud_cover_percentage: ["Cloud coverage(%)", true],
+                wind_direction: ["Wind direction", true],
+                frost: ["Frost", false],
+                rain: ["Rain", false],
+                snow: ["Snow", false],
+                hail: ["Hail", false],
+                thunderstorm: ["Thunderstorm", false],
                 tornado: ["Tornado", false],
             },
             order: {
@@ -238,7 +238,7 @@ export default {
     methods: {
         getStations() {
             this.$store.dispatch("station/getAll", [1, "name", "asc"]);
-            document.title = "Overzicht weerstations " + " - Society of Protection of Birds";
+            document.title = "Overview weather stations " + " - Society of Protection of Birds";
         },
         changePage(pageNum) {
             if (pageNum >= 1 && pageNum <= this.pagination.total_pages) {
