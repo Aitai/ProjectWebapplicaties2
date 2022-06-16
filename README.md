@@ -12,7 +12,7 @@ This application consists of two parts, a backend and a frontend, which both nee
 [Instructions for running the front-end](#installing-and-running-the-front-end)
 # Installing and running the backend
 
-To follow these instructions, you should change directory `Backend/`. When that is done you should install all the dependencies by executing `composer install`.
+To follow these instructions, you should change directory to `Backend/`. When that is done you should install all the dependencies by executing `composer install`.
 
 ### Environment variables
 Next you'll want to copy the *.env.example* file to the same folder and name it `.env`.
