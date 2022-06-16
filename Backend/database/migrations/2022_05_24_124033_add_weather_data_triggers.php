@@ -20,243 +20,141 @@ return new class extends Migration {
              FOR EACH ROW
              BEGIN
                 SELECT ROUND(SUM(lastValues.temp) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		IF @result IS NULL THEN
-		    SET @result = 0;
-		END IF;
 		IF NEW.temp IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                	VALUES (@last_id + 1, 'temp');
-                    SET NEW.temp = @result;
+                	VALUES (@lastId + 1, 'temp');
+                    SET NEW.temp = IFNULL(@result, 0);
                 ELSEIF NEW.temp > @result * 1.2 OR NEW.temp < @result * .8 THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type, original_value)
-                        VALUES (@last_id + 1, 'temp', NEW.temp);
+                        VALUES (@lastId + 1, 'temp', NEW.temp);
                     SET NEW.temp = @result * ROUND(RAND(), 1) * .4 + .8;
                 END IF;
 
                 SELECT ROUND(SUM(lastValues.dew_point_temp) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		IF @result IS NULL THEN
-		    SET @result = 0;
-		END IF;
                 IF NEW.dew_point_temp IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'dew_point_temp');
-                    SET NEW.dew_point_temp = @result;
+                        VALUES (@lastId + 1, 'dew_point_temp');
+                    SET NEW.dew_point_temp = IFNULL(@result, 0);
                 ELSEIF NEW.dew_point_temp > @result * 1.2 OR NEW.dew_point_temp < @result * .8 THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type, original_value)
-                        VALUES (@last_id + 1, 'dew_point_temp', NEW.dew_point_temp);
+                        VALUES (@lastId + 1, 'dew_point_temp', NEW.dew_point_temp);
                     SET NEW.dew_point_temp = @result * ROUND(RAND(), 1) * .4 + .8;
                 END IF;
 
                 IF NEW.station_air_pressure IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'station_air_pressure');
+                        VALUES (@lastId + 1, 'station_air_pressure');
                     SELECT ROUND(SUM(lastValues.station_air_pressure) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.station_air_pressure = @result;
+                    SET NEW.station_air_pressure = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.sea_level_air_pressure IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'sea_level_air_pressure');
+                        VALUES (@lastId + 1, 'sea_level_air_pressure');
                     SELECT ROUND(SUM(lastValues.sea_level_air_pressure) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.sea_level_air_pressure = @result;
+                    SET NEW.sea_level_air_pressure = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.visibility IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'visibility');
+                        VALUES (@lastId + 1, 'visibility');
                     SELECT ROUND(SUM(lastValues.visibility) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.visibility = @result;
+                    SET NEW.visibility = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.wind_speed IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'wind_speed');
+                        VALUES (@lastId + 1, 'wind_speed');
                     SELECT ROUND(SUM(lastValues.wind_speed) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.wind_speed = @result;
+                    SET NEW.wind_speed = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.precipitation IS NULL THEN
-	            SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+	            SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'precipitation');
+                        VALUES (@lastId + 1, 'precipitation');
                     SELECT ROUND(SUM(lastValues.precipitation) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.precipitation = @result;
+                    SET NEW.precipitation = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.snow_depth IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'snow_depth');
+                        VALUES (@lastId + 1, 'snow_depth');
                     SELECT ROUND(SUM(lastValues.snow_depth) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.snow_depth = @result;
+                    SET NEW.snow_depth = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.cloud_cover_percentage IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'cloud_cover_percentage');
+                        VALUES (@lastId + 1, 'cloud_cover_percentage');
                     SELECT ROUND(SUM(lastValues.cloud_cover_percentage) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.cloud_cover_percentage = @result;
+                    SET NEW.cloud_cover_percentage = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.wind_direction IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'wind_direction');
+                        VALUES (@lastId + 1, 'wind_direction');
                     SELECT ROUND(SUM(lastValues.wind_direction) / COUNT(*), 1) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.wind_direction = @result;
+                    SET NEW.wind_direction = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.frost IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'frost');
+                        VALUES (@lastId + 1, 'frost');
                     SELECT (SUM(lastValues.frost) > (COUNT(lastValues.frost) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.frost = @result;
+                    SET NEW.frost = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.rain IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'rain');
+                        VALUES (@lastId + 1, 'rain');
                     SELECT (SUM(lastValues.rain) > (COUNT(lastValues.rain) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.rain = @result;
+                    SET NEW.rain = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.snow IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'snow');
+                        VALUES (@lastId + 1, 'snow');
                     SELECT (SUM(lastValues.snow) > (COUNT(lastValues.snow) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.snow = @result;
+                    SET NEW.snow = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.hail IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'hail');
+                        VALUES (@lastId + 1, 'hail');
                     SELECT (SUM(lastValues.hail) > (COUNT(lastValues.hail) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.hail = @result;
+                    SET NEW.hail = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.thunderstorm IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'thunderstorm');
+                        VALUES (@lastId + 1, 'thunderstorm');
                     SELECT (SUM(lastValues.thunderstorm) > (COUNT(lastValues.thunderstorm) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.thunderstorm = @result;
+                    SET NEW.thunderstorm = IFNULL(@result, 0);
                 END IF;
 
                 IF NEW.tornado IS NULL THEN
-		    SELECT MAX(id) INTO @last_id FROM weather_data;
-		    IF @last_id IS NULL THEN
-		    	SET @last_id = 1;
-		    END IF;
+		    SELECT IFNULL(MAX(id), 1) INTO @lastId FROM weather_data;
                     INSERT INTO corrected_weather_data (weather_data_id, type)
-                        VALUES (@last_id + 1, 'tornado');
+                        VALUES (@lastId + 1, 'tornado');
                     SELECT (SUM(lastValues.tornado) > (COUNT(lastValues.tornado) / 2)) INTO @result FROM (SELECT * FROM weather_data WHERE station_name = NEW.station_name ORDER BY id DESC LIMIT 30) AS lastValues;
-		    IF @result IS NULL THEN
-		    	SET @result = 0;
-		    END IF;
-                    SET NEW.tornado = @result;
+                    SET NEW.tornado = IFNULL(@result, 0);
                 END IF;
             END;
         ";
