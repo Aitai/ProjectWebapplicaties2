@@ -1,25 +1,93 @@
 <template>
-  Dashboard
+  <Bar
+    :chart-options="chartOptions"
+    :chart-data="chartData"
+    :chart-id="chartId"
+    :dataset-id-key="datasetIdKey"
+    :plugins="plugins"
+    :css-classes="cssClasses"
+    :styles="styles"
+    :width="width"
+    :height="height"
+  />
 </template>
 
 <script>
+import { Bar } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
+
 export default {
-  mounted() {
-    this.getPeaks()
-  },
-  methods: {
-    getPeaks() {
-      this.$store.dispatch("weather/getPeaks");
+  name: "BarChart",
+  components: { Bar },
+  props: {
+    chartId: {
+      type: String,
+      default: "bar-chart",
     },
-    getDates() {
-      return this.$store.state.weather.dates;
+    datasetIdKey: {
+      type: String,
+      default: "label",
     },
-    getTemps() {
-      return this.$store.state.weather.temps;
-    }
+    width: {
+      type: Number,
+      default: 400,
+    },
+    height: {
+      type: Number,
+      default: 400,
+    },
+    cssClasses: {
+      default: "",
+      type: String,
+    },
+    styles: {
+      type: Object,
+      default: () => {},
+    },
+    plugins: {
+      type: Object,
+      default: () => {},
+    },
   },
-  name: "DashboardView",
+  data() {
+    return {
+      chartData: {
+        labels: ["January", "February", "March"],
+        // get data from api
+        datasets: [
+          {
+            label: "My First dataset",
+            backgroundColor: "rgba(0,99,132,0.2)",
+            data: [1, 10, 5],
+          },
+          {
+            label: "My Second dataset",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            data: [2, 12, 9],
+          },
+        ],
+      },
+      chartOptions: {
+        responsive: true,
+      },
+    };
+  },
 };
 </script>
-
-<style scoped></style>
