@@ -5,23 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use App\Models\WeatherData;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use LSS\Array2XML;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Xml;
+use SimpleXMLElement;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * @group Weather Data
+ *
+ * API's for everything related to weather data and stations.
+ */
 class WeatherStationsController extends Controller
 {
-//    public function create(Request $request)
-//    {
-//
-//        Measurement::insert($request->json('WEATHERDATA')));
-//        return Measurement::create();
-//    }
 
     public function index()
     {
         return WeatherData::all();
     }
 
+    /**
+     * Send weather data to backend
+     *
+     * @bodyParam WEATHERDATA array required Two dimensional array containing all values. Example: [ "100020", "1970-01-01 00:00", 10, 10, 10, 10, 10, 10, 10, 10, [ 0, 0, 0, 0, 0, 0 ] ]
+     *
+     */
     public function receive(Request $request)
     {
         if ($request->post('WEATHERDATA') == null) {
@@ -65,11 +74,29 @@ class WeatherStationsController extends Controller
         return "Success";
     }
 
+    /**
+     * Get all weather data
+     *
+     */
     public function get()
     {
         return WeatherData::all();
     }
 
+    /**
+     * Get weather data using the station name.
+     *
+     * @urlParam station_name string required Valid station name. Example: 100020
+     *
+     * @response 200 {
+     *   "station": "String",
+     *   "measurements": "Collection"
+     * }
+     * @response 404 "error": {
+     *  "code": 404,
+     *  "message": "No station with that name"
+     * }
+     */
     public function showStation($station_name)
     {
         $station = Station::all()->where('name', '=', $station_name)->first();
@@ -80,6 +107,18 @@ class WeatherStationsController extends Controller
         }
     }
 
+    /**
+     * Get a list of available stations.
+     *
+     * @bodyParam page int Page number. Example: 1
+     * @bodyParam ordered_row string On which row the data is sorted. Example: temp
+     * @bodyParam order_by string The order in which the data is sorted. Example: asc
+     *
+     * @response 200 {
+     *   "data": "Array",
+     *   "isActive": "Boolean"
+     * }
+     */
     public function getStations(Request $request)
     {
         $orderedRow = $request->ordered_row ?: 'name';
@@ -108,8 +147,43 @@ class WeatherStationsController extends Controller
         return $new_stations + $stations->toArray();
     }
 
+    /**
+     * Get peak temperatures of the last four weeks.
+     *
+     * @response 200 {
+     *   "Collection"
+     * }
+     */
     public function getPeaks(): array
     {
         return WeatherData::getPeakTemperatures();
+    }
+
+    public function getXmlExport()
+    {
+        $data = WeatherData::with("station")->with("geoLocation")->with("correction")->where("datetime", ">=", Carbon::now()->addWeek(-4))->get();
+
+        $xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><weather></weather>");
+
+        $this->arrayToXML($data->toArray(),$xml);
+        return response()->streamDownload(function () use ($xml) {
+            echo $xml->asXML();
+        }, "export.xml");
+    }
+
+    private function arrayToXML($array, &$xml_user_info) {
+        foreach($array as $key => $value) {
+            if(is_array($value)) {
+                if(!is_numeric($key)){
+                    $subnode = $xml_user_info->addChild("Item$key");
+                    $this->arrayToXML($value, $subnode);
+                }else{
+                    $subnode = $xml_user_info->addChild("Item$key");
+                    $this->arrayToXML($value, $subnode);
+                }
+            }else {
+                $xml_user_info->addChild("$key","$value");
+            }
+        }
     }
 }

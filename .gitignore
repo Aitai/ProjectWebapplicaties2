@@ -8,6 +8,7 @@ docker/
 # Backend
 Backend/vendor
 Backend/.env
+Backend/composer.lock
 
 # Front-end
 Frontend/node_modules/

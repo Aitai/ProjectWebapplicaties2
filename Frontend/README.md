@@ -1,10 +1,10 @@
-# IWA Front-end
+# Society of Protection of Birds Front-end
 
-This template should help get you started developing the Vue.js IWA application.
+This template should help get you started developing the Vue.js Society of Protection of Birds application.
 
 ## Initial setup
 Copy the `.env.example` file to the same folder and name the file `.env`
-This file should have the file path of the IWA back-end API (final step of the main README.md).
+This file should have the file path of the Society of Protection of Birds back-end API (final step of the main README.md).
 
 ### Project Setup
 
@@ -23,7 +23,7 @@ npm run dev
 
 ### Compile and Minify for Production
 
-Or you can build the project once and open the */dist/index.html* file in the browser. 
+Or you can build the project once and open the */dist/index.html* file in the browser.
 ```sh
 npm run build
 ```

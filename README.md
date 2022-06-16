@@ -1,4 +1,4 @@
-# IWA Application
+# Society of Protection of Birds Application
 
 Built with [Laravel Lumen](https://lumen.laravel.com/).
 ## Requirements

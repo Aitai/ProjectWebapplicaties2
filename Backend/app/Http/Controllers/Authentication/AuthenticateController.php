@@ -25,16 +25,16 @@ class AuthenticateController extends Controller
      * This is used for first time authentication.
      *
      * @bodyParam email string required E-mail of the user. Example: development@dxmusic.nl
-     * @bodyParam password string required  Password of the user.
+     * @bodyParam password string required Password of the user. Example: password
      *
      * @response 200 {
      *  "token": "String"
      * }
-     *  @response 401 "error": {
+     * @response 401 "error": {
      *  "code": 401,
      *  "message": "Invalid credentials."
      * }
-     * @response 429  error": {
+     * @response 429 "error": {
      *  "code": 429,
      *  "message": "Too Many Attempts."
      * }
@@ -56,17 +56,17 @@ class AuthenticateController extends Controller
     /**
      * Renew token
      *
-     * With this endpoint you can request an new token, the current one should be valid.
+     * With this endpoint you can request a new token, the current one should be valid.
      * @authenticated
      *
      * @response {
      *  "token": "String"
      * }
-     *  @response 401 "error": {
+     * @response 401 "error": {
      *  "code": 401,
      *  "message": "Unauthorized."
      * }
-     * @response 429  error": {
+     * @response 429 "error": {
      *  "code": 429,
      *  "message": "Too Many Attempts."
      * }

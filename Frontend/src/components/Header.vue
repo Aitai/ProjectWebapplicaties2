@@ -11,14 +11,14 @@
                         <img
                             v-show="!darkMode"
                             class="h-12"
-                            src="@/assets/LogoIWA.svg"
-                            alt="Logo IWA"
+                            src="@/assets/LogoSoPoB.png"
+                            alt="Logo Society of Protection of Birds"
                         />
                         <img
                             v-show="darkMode"
                             class="h-12"
-                            src="@/assets/LogoIWADarkMode.svg"
-                            alt="Logo IWA"
+                            src="@/assets/LogoSoPoBDarkMode.png"
+                            alt="Logo Society of Protection of Birds"
                         />
                     </div>
                     <div class="hidden md:block">
@@ -192,7 +192,9 @@ const user = {
 const navigation = [
     { name: "Dashboard", href: "home" },
     { name: "Weerstations", href: "station.all" },
+    { name: "Grafieken", href: "graphs" },
 ];
+
 const userNavigation = [
     { name: "Your Profile", href: "#" },
     { name: "Settings", href: "#" },
@@ -230,6 +232,7 @@ export default {
             user,
             navigation,
             userNavigation,
+
         };
     },
 };
