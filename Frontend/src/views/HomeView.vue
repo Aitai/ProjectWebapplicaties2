@@ -5,11 +5,7 @@
             <h5
                 class="text-xl font-medium text-gray-900 dark:text-white text-center"
             >
-                <img
-                    class="h-16 mx-auto"
-                    src="@/assets/sopob.png"
-                    alt="Logo SoPoB"
-                />
+                IWA
             </h5>
             <p ref="errorField" class="text-red-600" />
             <div>
