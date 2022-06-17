@@ -6,7 +6,7 @@
             <h3
                 class="text-lg leading-6 font-medium text-gray-900 dark:text-white"
             >
-                Weerstation {{ station.name }}
+                Weather station {{ station.name }}
             </h3>
             <p class="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-300">
                 Longitude: {{ station.longitude }}, Latitude:
@@ -58,18 +58,18 @@
 
 <script>
 const fields = {
-    datetime: "Datum",
-    temp: "Temperatuur",
-    dew_point_temp: "Dauwpunt temperatuur",
-    station_air_pressure: "Station Luchtdruk",
-    sea_level_air_pressure: "Zeeniveau Luchtdruk",
-    visibility: "Zicht",
-    wind_speed: "Windsnelheid",
-    precipitation: "Neerslag",
-    snow_depth: "Sneeuwdiepte",
-    cloud_cover_percentage: "Bewolking",
-    wind_direction: "Windrichting",
-    special_occurances: "Speciale omstandigheden",
+    datetime: "Date",
+    temp: "Temperature",
+    dew_point_temp: "Dew point temperature",
+    station_air_pressure: "Station air pressure",
+    sea_level_air_pressure: "Sealevel air pressure",
+    visibility: "Visibility",
+    wind_speed: "Wind speed",
+    precipitation: "Precipitation",
+    snow_depth: "Snow depth",
+    cloud_cover_percentage: "Cloud coverage",
+    wind_direction: "Wind direction",
+    special_occurances: "Special circumstances",
 };
 
 const special_occurances = {
@@ -97,7 +97,7 @@ export default {
     methods: {
         getStation(stationName) {
             this.$store.dispatch("station/getData", stationName);
-            document.title = "Weerstation " + stationName + " - Society of Protection of Birds";
+            document.title = "Weather station " + stationName + " - Society of Protection of Birds";
         },
     },
     setup() {
