@@ -20,79 +20,44 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       chartData: {
-        labels: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ],
         datasets: [
           {
-            label: "Wind Speed (km/h)",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(175,92,92,0.8)",
-            borderColor: "rgba(175,92,92,0.8)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgba(175,92,92,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(175,92,92,1)",
-            pointHoverBorderColor: "rgba(175,92,92,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40, 35, 40, 39, 40, 40],
+            label: 'Temperature (°C)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
           },
           {
-            label: "Temperature (°C)",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [35, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],
+            label: 'Wind speed (km/h)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
           },
         ],
       },
     };
   },
-  mounted() {
-    this.renderChart();
+  created() {
+    axios.get('http://localhost:8000/stations/getPeakTemperatures').then(response => {
+        this.chartData.labels = response.data.reverse().map(item => item.date);
+        this.chartData.datasets[0].data = response.data.reverse().map(item => item.max_temp);
+      });
+    axios.get('http://localhost:8000/stations/getPeakWindSpeeds').then(response => {
+        this.chartData.datasets[1].data = response.data.reverse().map(item => item.max_wind_speed);
+        this.renderChart();
+      });
   },
   methods: {
     renderChart() {
       var ctx = document.getElementById("myChart").getContext("2d");
-      var myChart = new Chart(ctx, {
-        type: "line",
+      new Chart(ctx, {
+        type: "bar",
         data: this.chartData,
         options: {
           responsive: true,
