@@ -1,4 +1,4 @@
-# Society of Protection of Birds Application
+# Society for the Protection of Birds Application
 
 Built with [Laravel Lumen](https://lumen.laravel.com/).
 ## Requirements
