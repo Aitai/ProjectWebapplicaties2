@@ -11,7 +11,7 @@ export default defineConfig({
         VitePWA({
             includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
             manifest: {
-                name: 'Society of the Protection of Birds',
+                name: 'Society for the Protection of Birds',
                 short_name: 'Short name of your app',
                 description: 'Description of your app',
                 theme_color: '#ffd100',
