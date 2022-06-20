@@ -1,7 +1,7 @@
 <template>
     <Disclosure
         as="nav"
-        class="bg-white dark:bg-neutral-800 shadow"
+        class="bg-blue-300 dark:bg-neutral-800 shadow"
         v-slot="{ open }"
     >
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,8 +29,8 @@
                                 :key="item.name"
                                 :class="[
                                     $route.name == item.href
-                                        ? 'bg-gray-300 dark:bg-gray-700'
-                                        : 'text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700',
+                                        ? 'bg-yellow-200 dark:bg-gray-700'
+                                        : 'text-black hover:bg-sky-200 dark:hover:bg-gray-700',
                                     'text-black dark:text-white px-3 py-2 rounded-md text-sm font-medium',
                                 ]"
                                 :aria-current="
