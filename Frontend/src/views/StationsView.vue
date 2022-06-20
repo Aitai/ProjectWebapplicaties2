@@ -14,7 +14,7 @@
                 <form action="#" method="POST">
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div
-                            class="px-4 py-5 bg-white dark:bg-slate-800 space-y-6 sm:p-6"
+                            class="px-4 py-5 bg-sky-100 dark:bg-slate-800 space-y-6 sm:p-6"
                         >
                             <fieldset>
                                 <legend
@@ -101,7 +101,7 @@
                                     params: { stationName: station.name },
                                 })
                             "
-                            class="odd:bg-white even:bg-slate-50 dark:odd:bg-neutral-800 dark:even:bg-gray-800 hover:cursor-pointer hover:bg-slate-300 ease-linear duration-75"
+                            class="odd:bg-white even:bg-slate-50 dark:odd:bg-neutral-800 dark:even:bg-gray-800 hover:cursor-pointer hover:bg-blue-100 ease-linear duration-75"
                         >
                             <td
                                 v-for="(field, key) in fields"
@@ -124,7 +124,7 @@
             <div class="my-3 flex text-center justify-center">
                 <button
                     @click="changePage(pagination.current_page - 1)"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700 dark:text-gray-200"
                 >
                     <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
                     <!-- Previous -->
@@ -132,37 +132,37 @@
                 <button
                     v-if="pagination.current_page != 1"
                     @click="changePage(1)"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700 dark:text-gray-200"
                 >
                     1
                 </button>
                 <div
                     v-if="pagination.current_page != 1"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-200"
                 >
                     ...
                 </div>
                 <div
-                    class="font-bold rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-50"
+                    class="font-bold rounded-none bg-yellow-200 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-50"
                 >
                     {{ pagination.current_page }}
                 </div>
                 <div
                     v-if="pagination.current_page != pagination.total_pages"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 dark:text-gray-200"
                 >
                     ...
                 </div>
                 <button
                     v-if="pagination.current_page != pagination.total_pages"
                     @click="changePage(pagination.total_pages)"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700 dark:text-gray-200"
                 >
                     {{ pagination.total_pages }}
                 </button>
                 <button
                     @click="changePage(pagination.current_page + 1)"
-                    class="rounded-none bg-slate-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 dark:text-gray-200"
+                    class="rounded-none bg-sky-100 dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-slate-700 dark:text-gray-200"
                 >
                     <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
                     <!-- Next -->
