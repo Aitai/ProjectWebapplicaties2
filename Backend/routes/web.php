@@ -34,6 +34,7 @@ $router->group(['prefix' => 'stations'], function () use ($router) {
     $router->get('/getWeatherData', 'WeatherStationsController@get');
     $router->get('/getStations', 'WeatherStationsController@getStations');
     $router->get('/getWeatherData/{station_name}', 'WeatherStationsController@showStation');
-    $router->get('/getPeaks', 'WeatherStationsController@getPeaks');
+    $router->get('/getPeakTemperatures', 'WeatherStationsController@getPeakTemperatures');
+    $router->get('/getPeakWindSpeeds', 'WeatherStationsController@getPeakWindspeeds');
     $router->get('/getExport', 'WeatherStationsController@getXmlExport');
 });

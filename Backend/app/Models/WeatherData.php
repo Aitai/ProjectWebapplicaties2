@@ -39,6 +39,11 @@ class WeatherData extends Model
         return  DB::select("SELECT MAX(WD.temp) as max_temp, CAST(WD.datetime AS DATE) AS date, GL.town FROM weather_data AS WD INNER JOIN geolocation AS GL ON WD.station_name = GL.station_name WHERE WD.datetime >= (CURDATE() - INTERVAL 4 WEEK) GROUP BY date ORDER BY date DESC LIMIT 15;");
     }
 
+    public static function getPeakWindSpeeds() : array
+    {
+        return  DB::select("SELECT MAX(WD.wind_speed) as max_wind_speed, CAST(WD.datetime AS DATE) AS date, GL.town FROM weather_data AS WD INNER JOIN geolocation AS GL ON WD.station_name = GL.station_name WHERE WD.datetime >= (CURDATE() - INTERVAL 4 WEEK) GROUP BY date ORDER BY date DESC LIMIT 15;");
+    }
+
     public function station()
     {
         return $this->hasOne(Station::class, "name", "station_name");
