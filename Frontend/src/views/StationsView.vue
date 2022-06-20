@@ -215,7 +215,7 @@ export default {
                 temp: ["Temperature", true],
                 dew_point_temp: ["Dew point temperature", false],
                 station_air_pressure: ["Station air pressure", true],
-                sea_level_air_pressure: ["Sealevel air pressure", true],
+                sea_level_air_pressure: ["Sea level air pressure", true],
                 visibility: ["Visibility", true],
                 wind_speed: ["Wind speed", true],
                 precipitation: ["Precipitation", true],
