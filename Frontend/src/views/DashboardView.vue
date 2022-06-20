@@ -7,15 +7,19 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Wind speed vs temperature</h4>
+              <h4 class="card-title text-gray-900 dark:text-white">Wind speed vs temperature</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body dark:bg-gray-700">
               <canvas id="myChart" width="600" height="400"></canvas>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="pt-4 text-gray-900 dark:text-white">
+    Graphs
+    <button v-on:click="doExport" class="px-4 py-2 font-semibold text-sm dark:text-white bg-blue-300 dark:bg-gray-600 text-black rounded-full shadow-sm">Export</button>
   </div>
 </template>
 
@@ -64,6 +68,10 @@ export default {
         },
       });
     },
+    doExport() {
+      this.$store.dispatch("graph/getExport");
+    },
+    name: "GraphView"
   },
 };
 </script>
