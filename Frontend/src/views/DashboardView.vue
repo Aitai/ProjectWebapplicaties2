@@ -44,7 +44,7 @@ export default {
     };
   },
   created() {
-    axios.get('http://localhost:8000/stations/getPeakTemperatures').then(response => {
+    axios.get('http://localhost:8000/stations/getLowestTemperatures').then(response => {
         this.chartData.labels = response.data.reverse().map(item => item.date);
         this.chartData.datasets[0].data = response.data.reverse().map(item => item.max_temp);
       });
