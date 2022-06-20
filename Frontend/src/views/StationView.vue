@@ -31,7 +31,7 @@
                     <tr
                         v-for="measurement in station.measurements"
                         :key="measurement.id"
-                        class="odd:bg-white even:bg-slate-50 dark:odd:bg-neutral-800 dark:even:bg-gray-800 hover:bg-slate-100 ease-linear duration-75"
+                        class="odd:bg-white even:bg-slate-50 dark:odd:bg-neutral-800 dark:even:bg-gray-800 hover:bg-blue-100 ease-linear duration-75"
                     >
                         <td
                             v-for="(_, field_key) in fields"
