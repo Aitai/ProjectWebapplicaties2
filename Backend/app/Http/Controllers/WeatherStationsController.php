@@ -154,9 +154,9 @@ class WeatherStationsController extends Controller
      *   "Collection"
      * }
      */
-    public function getPeakTemperatures(): array
+    public function getLowestTemperatures(): array
     {
-        return WeatherData::getPeakTemperatures();
+        return WeatherData::getLowestTemperatures();
     }
 
     public function getPeakWindSpeeds(): array
