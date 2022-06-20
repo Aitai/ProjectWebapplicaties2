@@ -191,8 +191,8 @@ const user = {
 };
 const navigation = [
     { name: "Dashboard", href: "home" },
-    { name: "Weerstations", href: "station.all" },
-    { name: "Grafieken", href: "graphs" },
+    { name: "Weather stations", href: "station.all" },
+    { name: "Graphs", href: "graphs" },
 ];
 
 const userNavigation = [
