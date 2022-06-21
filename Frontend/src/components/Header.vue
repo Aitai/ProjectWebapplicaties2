@@ -112,8 +112,8 @@
           :key="item.name"
           :class="[
             $route.name == item.href
-              ? 'bg-gray-300'
-              : 'text-gray-300 hover:bg-gray-200',
+              ? 'bg-yellow-200'
+              : 'hover:bg-gray-200',
             'text-black block px-3 py-2 rounded-md text-base font-medium',
           ]"
           :aria-current="item.current ? 'page' : undefined"
