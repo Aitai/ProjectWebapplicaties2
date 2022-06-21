@@ -1,4 +1,4 @@
-name: Authenticatie
+name: Authentication
 description: ''
 endpoints:
   -
@@ -48,15 +48,6 @@ endpoints:
           }
         headers: []
         description: '401'
-      -
-        status: 429
-        content: |-
-          "error": {
-           "code": 429,
-           "message": "Too Many Attempts."
-          }
-        headers: []
-        description: '429'
     responseFields: []
   -
     httpMethods:
@@ -91,13 +82,4 @@ endpoints:
           }
         headers: []
         description: '401'
-      -
-        status: 429
-        content: |-
-          "error": {
-           "code": 429,
-           "message": "Too Many Attempts."
-          }
-        headers: []
-        description: '429'
     responseFields: []

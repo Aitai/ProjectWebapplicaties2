@@ -15,15 +15,6 @@ use Illuminate\Validation\Rule;
 class UsersController extends Controller
 {
 
-    /**
-     * Show my user profile
-     * @authenticated
-     */
-    public function view()
-    {
-        return Auth::user();
-    }
-
     private function validateRequest(Request $request)
     {
         return $this->validate($request, [

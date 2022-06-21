@@ -14,12 +14,12 @@ return [
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
      */
-    'description' => '',
+    'description' => 'Weather API for the Society for the Protection of Birds',
 
     /*
      * The base URL displayed in the docs. If this is empty, Scribe will use the value of config('app.url').
      */
-    'base_url' => 'localhost:8080',
+    'base_url' => 'localhost:8000',
 
     /*
      * Tell Scribe what routes to generate documentation for.

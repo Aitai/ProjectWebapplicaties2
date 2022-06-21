@@ -77,6 +77,29 @@ class WeatherStationsController extends Controller
     /**
      * Get all weather data
      *
+     * @response 200 [
+     *  {
+     *      "id": Int,
+     *      "station_name": "Int",
+     *      "datetime": "Timestamp"
+     *      "temp": "Float",
+     *      "dew_point_temp": "Float",
+     *      "station_air_pressure": "Float",
+     *      "sea_level_air_pressure": "Float",
+     *      "visibility": "Float",
+     *      "wind_speed": "Float",
+     *      "precipitation": "Float",
+     *      "snow_depth": "Float",
+     *      "cloud_cover_percentage": "Float",
+     *      "wind_direction": Int,
+     *      "frost": Int,
+     *      "rain": Int,
+     *      "snow": Int,
+     *      "hail": Int,
+     *      "thunderstorm": Int,
+     *      "tornado": Int
+     *  }
+     * ]
      */
     public function get()
     {
@@ -86,11 +109,74 @@ class WeatherStationsController extends Controller
     /**
      * Get weather data using the station name.
      *
-     * @urlParam station_name string required Valid station name. Example: 100020
+     * @urlParam station_name string required Valid station name. Example: 170220
      *
      * @response 200 {
-     *   "station": "String",
-     *   "measurements": "Collection"
+     *  "station":
+     *      {
+     *          "name": "Int",
+     *          "longitude": Float,
+     *          "latitude": Float,
+     *          "elevation": Int
+     *      },
+     *      "measurements":
+     *      [
+     *          {
+     *              "id": Int,
+     *              "station_name": "Int",
+     *              "datetime": "Timestamp",
+     *              "temp": "Float",
+     *              "dew_point_temp": "Float",
+     *              "station_air_pressure": "Float",
+     *              "sea_level_air_pressure": "Float",
+     *              "visibility": "Float",
+     *              "wind_speed": "Float",
+     *              "precipitation": "Float",
+     *              "snow_depth": "Float",
+     *              "cloud_cover_percentage": "Float",
+     *              "wind_direction": Int,
+     *              "frost": Int,
+     *              "rain": Int,
+     *              "snow": Int,
+     *              "hail": Int,
+     *              "thunderstorm": Int,
+     *              "tornado": Int
+     *          }
+     *      ],
+     *      "nearest_location":
+     *          {
+     *              "id": Int,
+     *              "station_name": "Int",
+     *              "name": "String",
+     *              "administrative_region1": "String",
+     *              "administrative_region2": "String",
+     *              "country_code": "String",
+     *              "longitude": Float,
+     *              "latitude": Float
+     *          },
+     *      "geo_location":
+     *      {
+     *          "id": Int,
+     *          "station_name": "Int",
+     *          "country_code": "String",
+     *          "island": "String",
+     *          "county": "String",
+     *          "place": "String",
+     *          "hamlet": "String",
+     *          "town": "String",
+     *          "municipality": "String",
+     *          "state_district": "String",
+     *          "administrative": "String",
+     *          "state": "String",
+     *          "village": "String",
+     *          "region": "String",
+     *          "province": "String",
+     *          "city": "String",
+     *          "locality": "String",
+     *          "postcode": "Int",
+     *          "country": "String"
+     *      }
+     *  }
      * }
      * @response 404 "error": {
      *  "code": 404,
@@ -102,8 +188,8 @@ class WeatherStationsController extends Controller
         $station = Station::all()->where('name', '=', $station_name)->first();
         if ($station) {
             return [
-                'station' => $station, 
-                'measurements' => $station->weatherData, 
+                'station' => $station,
+                'measurements' => $station->weatherData,
                 'nearest_location' => $station->nearestLocation,
                 'geo_location' => $station->geoLocation
             ];
@@ -120,8 +206,56 @@ class WeatherStationsController extends Controller
      * @bodyParam order_by string The order in which the data is sorted. Example: asc
      *
      * @response 200 {
-     *   "data": "Array",
-     *   "isActive": "Boolean"
+     *  "data" :
+     *  [
+     *      {
+     *          "name": "Int",
+     *          "longitude": Float,
+     *          "latitude": Float,
+     *          "elevation": Int,
+     *          "is_active": Boolean,
+     *          "temp": Float,
+     *          "dew_point_temp": Float,
+     *          "station_air_pressure": Float,
+     *          "sea_level_air_pressure": Float,
+     *          "visibility": Float,
+     *          "wind_speed": FLoat,
+     *          "precipitation": Float,
+     *          "snow_depth": Int,
+     *          "cloud_cover_percentage": Int,
+     *          "wind_direction": Float,
+     *          "frost": Int,
+     *          "rain": Int,
+     *          "snow": Int,
+     *          "hail": Int,
+     *          "thunderstorm": Int,
+     *          "tornado": Int
+     *      }
+     *  ],
+     *  "current_page": 1,
+     *  "first_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=1",
+     *  "from": 1,
+     *  "last_page": Int,
+     *  "last_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=Int",
+     *  "links":
+     *  [
+     *      {
+     *          "url": Url,
+     *          "label": "pagination.previous",
+     *          "active": Boolean
+     *      },
+     *      {
+     *          "url": "http:\/\/localhost:8000\/stations\/getStations?page=1",
+     *          "label": "1",
+     *          "active": Boolean
+     *      },
+     *  ],
+     *  "next_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=2",
+     *  "path": "http:\/\/localhost:8000\/stations\/getStations",
+     *  "per_page": 10,
+     *  "prev_page_url": null,
+     *  "to": 10,
+     *  "total": Int
      * }
      */
     public function getStations(Request $request)
@@ -153,22 +287,111 @@ class WeatherStationsController extends Controller
     }
 
     /**
-     * Get peak temperatures of the last four weeks.
+     * Get lowest temperatures of the last four weeks.
      *
-     * @response 200 {
-     *   "Collection"
-     * }
+     * @response 200 [
+     *  {
+     *      "max_temp": "Float",
+     *      "date": "Timestamp",
+     *      "town": "String"
+     *  },
+     *  {
+     *      "max_temp": "Float",
+     *      "date": "Timestamp",
+     *      "town": "String"
+     *  }
+     * ]
      */
     public function getLowestTemperatures(): array
     {
         return WeatherData::getLowestTemperatures();
     }
 
+    /**
+     * Get peak wind speeds of the last four weeks.
+     *
+     * @response 200 [
+     *  {
+     *      "max_wind_speed": "Float",
+     *      "date": "Timestamp",
+     *      "town": "String"
+     *  },
+     *  {
+     *      "max_wind_speed": "Float",
+     *      "date": "Timestamp",
+     *      "town": "String"
+     *  }
+     * ]
+     */
     public function getPeakWindSpeeds(): array
     {
         return WeatherData::getPeakWindSpeeds();
     }
 
+    /**
+     * Get an XML export of the last four weeks
+     *
+     * @response 200
+     * <?xml version="1.0" encoding="UTF-8"?>
+     * <weather>
+     *  <Item0>
+     *      <id>Int</id>
+     *      <station_name>Int</station_name>
+     *      <datetime>Timestamp</datetime>
+     *      <temp>Float</temp>
+     *      <dew_point_temp>Float</dew_point_temp>
+     *      <station_air_pressure>Float</station_air_pressure>
+     *      <sea_level_air_pressure>Float</sea_level_air_pressure>
+     *      <visibility>Float</visibility>
+     *      <wind_speed>Float</wind_speed>
+     *      <precipitation>Float</precipitation>
+     *      <snow_depth>Float</snow_depth>
+     *      <cloud_cover_percentage>Float</cloud_cover_percentage>
+     *      <wind_direction>Int</wind_direction>
+     *      <frost>Int</frost>
+     *      <rain>Int</rain>
+     *      <snow>Int</snow>
+     *      <hail>Int</hail>
+     *      <thunderstorm>Int</thunderstorm>
+     *      <tornado>Int</tornado>
+     *      <Itemstation>
+     *          <name>Int</name>
+     *          <longitude>Float</longitude>
+     *          <latitude>Float</latitude>
+     *          <elevation>Int</elevation>
+     *      </Itemstation>
+     *      <Itemgeo_location>
+     *          <id>Int</id>
+     *          <station_name>Int</station_name>
+     *          <country_code>String</country_code>
+     *          <island>String</island>
+     *          <county>String</county>
+     *          <place>String</place>
+     *          <hamlet>String</hamlet>
+     *          <town>String</town>
+     *          <municipality>String</municipality>
+     *          <state_district>String</state_district>
+     *          <administrative>String</administrative>
+     *          <state>String</state>
+     *          <village>String</village>
+     *          <region>String</region>
+     *          <province>String</province>
+     *          <city>String</city>
+     *          <locality>String</locality>
+     *          <postcode>String</postcode>
+     *          <country>String</country>
+     *      </Itemgeo_location>
+     *      <Itemcorrection>
+     *          <Item0>
+     *              <id>Int</id>
+     *              <weather_data_id>Int</weather_data_id>
+     *              <type>String</type>
+     *              <original_value>Float</original_value>
+     *          </Item0>
+     *      </Itemcorrection>
+     *  </Item0>
+     *</weather>
+     */
     public function getXmlExport()
     {
         $data = WeatherData::with("station")->with("geoLocation")->with("correction")->where("datetime", ">=", Carbon::now()->addWeek(-4))->get();

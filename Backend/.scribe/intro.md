@@ -1,6 +1,6 @@
 # Introduction
 
-
+Weather API for the Society for the Protection of Birds
 
 This documentation aims to provide all the information you need to work with our API.
 
@@ -10,5 +10,5 @@ You can switch the language used with the tabs at the top right (or from the nav
 > Base URL
 
 ```yaml
-localhost:8080
+localhost:8000
 ```

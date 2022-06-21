@@ -1,16 +1,57 @@
-name: 'User management'
+name: 'Weather Data'
 description: |-
 
-  API's for managing users
+  API's for everything related to weather data and stations.
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: users
+      - POST
+    uri: stations/sendWeatherData
     metadata:
-      title: 'Show my user profile'
+      title: 'Send weather data to backend'
       description: ''
-      authenticated: true
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      WEATHERDATA:
+        name: WEATHERDATA
+        description: 'Two dimensional array containing all values.'
+        required: true
+        example:
+          - '100020'
+          - '1970-01-01 00:00'
+          - 10
+          - 10
+          - 10
+          - 10
+          - 10
+          - 10
+          - 10
+          - 10
+          -
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+            - 0
+        type: 'string[]'
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: stations/getWeatherData
+    metadata:
+      title: 'Get all weather data'
+      description: ''
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -20,357 +61,380 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 500
+        status: 200
+        content: |-
+          [
+           {
+               "id": Int,
+               "station_name": "Int",
+               "datetime": "Timestamp"
+               "temp": "Float",
+               "dew_point_temp": "Float",
+               "station_air_pressure": "Float",
+               "sea_level_air_pressure": "Float",
+               "visibility": "Float",
+               "wind_speed": "Float",
+               "precipitation": "Float",
+               "snow_depth": "Float",
+               "cloud_cover_percentage": "Float",
+               "wind_direction": Int,
+               "frost": Int,
+               "rain": Int,
+               "snow": Int,
+               "hail": Int,
+               "thunderstorm": Int,
+               "tornado": Int
+           }
+          ]
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: stations/getStations
+    metadata:
+      title: 'Get a list of available stations.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      page:
+        name: page
+        description: 'Page number.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      ordered_row:
+        name: ordered_row
+        description: 'On which row the data is sorted.'
+        required: false
+        example: temp
+        type: string
+        custom: []
+      order_by:
+        name: order_by
+        description: 'The order in which the data is sorted.'
+        required: false
+        example: asc
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
         content: |-
           {
-              "message": "Wrong number of segments",
-              "exception": "UnexpectedValueException",
-              "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/firebase/php-jwt/src/JWT.php",
-              "line": 92,
-              "trace": [
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/app/Providers/AuthServiceProvider.php",
-                      "line": 38,
-                      "function": "decode",
-                      "class": "Firebase\\JWT\\JWT",
-                      "type": "::"
-                  },
-                  {
-                      "function": "App\\Providers\\{closure}",
-                      "class": "App\\Providers\\AuthServiceProvider",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/auth/RequestGuard.php",
-                      "line": 58,
-                      "function": "call_user_func"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/auth/GuardHelpers.php",
-                      "line": 60,
-                      "function": "user",
-                      "class": "Illuminate\\Auth\\RequestGuard",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/auth/GuardHelpers.php",
-                      "line": 70,
-                      "function": "check",
-                      "class": "Illuminate\\Auth\\RequestGuard",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/app/Http/Middleware/Authenticate.php",
-                      "line": 38,
-                      "function": "guest",
-                      "class": "Illuminate\\Auth\\RequestGuard",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "App\\Http\\Middleware\\Authenticate",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Routing/Pipeline.php",
-                      "line": 30,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/pipeline/Pipeline.php",
-                      "line": 116,
-                      "function": "Laravel\\Lumen\\Routing\\{closure}",
-                      "class": "Laravel\\Lumen\\Routing\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 426,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 263,
-                      "function": "sendThroughPipeline",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 169,
-                      "function": "handleFoundRoute",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Routing/Pipeline.php",
-                      "line": 48,
-                      "function": "Laravel\\Lumen\\Concerns\\{closure}",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/app/Http/Middleware/RespondWithJsonMiddleware.php",
-                      "line": 20,
-                      "function": "Laravel\\Lumen\\Routing\\{closure}",
-                      "class": "Laravel\\Lumen\\Routing\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "App\\Http\\Middleware\\RespondWithJsonMiddleware",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Routing/Pipeline.php",
-                      "line": 30,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/fruitcake/laravel-cors/src/HandleCors.php",
-                      "line": 38,
-                      "function": "Laravel\\Lumen\\Routing\\{closure}",
-                      "class": "Laravel\\Lumen\\Routing\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Fruitcake\\Cors\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Routing/Pipeline.php",
-                      "line": 30,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/pipeline/Pipeline.php",
-                      "line": 116,
-                      "function": "Laravel\\Lumen\\Routing\\{closure}",
-                      "class": "Laravel\\Lumen\\Routing\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 426,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 175,
-                      "function": "sendThroughPipeline",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Concerns/RoutesRequests.php",
-                      "line": 95,
-                      "function": "dispatch",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 308,
-                      "function": "handle",
-                      "class": "Laravel\\Lumen\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 287,
-                      "function": "callLaravelOrLumenRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 89,
-                      "function": "makeApiCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 45,
-                      "function": "makeResponseCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 35,
-                      "function": "makeResponseCallIfConditionsPass",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 222,
-                      "function": "__invoke",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 179,
-                      "function": "iterateThroughStrategies",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 116,
-                      "function": "fetchResponses",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 117,
-                      "function": "processRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 75,
-                      "function": "extractEndpointsInfoFromLaravelApp",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 51,
-                      "function": "extractEndpointsInfoAndWriteToDisk",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
-                      "line": 50,
-                      "function": "get",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/container/BoundMethod.php",
-                      "line": 36,
-                      "function": "handle",
-                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/container/Util.php",
-                      "line": 41,
-                      "function": "Illuminate\\Container\\{closure}",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/container/BoundMethod.php",
-                      "line": 93,
-                      "function": "unwrapIfClosure",
-                      "class": "Illuminate\\Container\\Util",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/container/BoundMethod.php",
-                      "line": 37,
-                      "function": "callBoundMethod",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/container/Container.php",
-                      "line": 653,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/console/Command.php",
-                      "line": 171,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\Container",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/symfony/console/Command/Command.php",
-                      "line": 291,
-                      "function": "execute",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/console/Command.php",
-                      "line": 156,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Command\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/symfony/console/Application.php",
-                      "line": 989,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/symfony/console/Application.php",
-                      "line": 299,
-                      "function": "doRunCommand",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/symfony/console/Application.php",
-                      "line": 171,
-                      "function": "doRun",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/illuminate/console/Application.php",
-                      "line": 102,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/vendor/laravel/lumen-framework/src/Console/Kernel.php",
-                      "line": 116,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/home/wilke/dox/school/projecten/project_iwa/ProjectWebapplicaties2/Backend/artisan",
-                      "line": 35,
-                      "function": "handle",
-                      "class": "Laravel\\Lumen\\Console\\Kernel",
-                      "type": "->"
-                  }
-              ]
+           "data" :
+           [
+               {
+                   "name": "Int",
+                   "longitude": Float,
+                   "latitude": Float,
+                   "elevation": Int,
+                   "is_active": Boolean,
+                   "temp": Float,
+                   "dew_point_temp": Float,
+                   "station_air_pressure": Float,
+                   "sea_level_air_pressure": Float,
+                   "visibility": Float,
+                   "wind_speed": FLoat,
+                   "precipitation": Float,
+                   "snow_depth": Int,
+                   "cloud_cover_percentage": Int,
+                   "wind_direction": Float,
+                   "frost": Int,
+                   "rain": Int,
+                   "snow": Int,
+                   "hail": Int,
+                   "thunderstorm": Int,
+                   "tornado": Int
+               }
+           ],
+           "current_page": 1,
+           "first_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=1",
+           "from": 1,
+           "last_page": Int,
+           "last_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=Int",
+           "links":
+           [
+               {
+                   "url": Url,
+                   "label": "pagination.previous",
+                   "active": Boolean
+               },
+               {
+                   "url": "http:\/\/localhost:8000\/stations\/getStations?page=1",
+                   "label": "1",
+                   "active": Boolean
+               },
+           ],
+           "next_page_url": "http:\/\/localhost:8000\/stations\/getStations?page=2",
+           "path": "http:\/\/localhost:8000\/stations\/getStations",
+           "per_page": 10,
+           "prev_page_url": null,
+           "to": 10,
+           "total": Int
           }
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-        description: null
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'stations/getWeatherData/{station_name}'
+    metadata:
+      title: 'Get weather data using the station name.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      station_name:
+        name: station_name
+        description: 'Valid station name.'
+        required: true
+        example: '170220'
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "station":
+               {
+                   "name": "Int",
+                   "longitude": Float,
+                   "latitude": Float,
+                   "elevation": Int
+               },
+               "measurements":
+               [
+                   {
+                       "id": Int,
+                       "station_name": "Int",
+                       "datetime": "Timestamp",
+                       "temp": "Float",
+                       "dew_point_temp": "Float",
+                       "station_air_pressure": "Float",
+                       "sea_level_air_pressure": "Float",
+                       "visibility": "Float",
+                       "wind_speed": "Float",
+                       "precipitation": "Float",
+                       "snow_depth": "Float",
+                       "cloud_cover_percentage": "Float",
+                       "wind_direction": Int,
+                       "frost": Int,
+                       "rain": Int,
+                       "snow": Int,
+                       "hail": Int,
+                       "thunderstorm": Int,
+                       "tornado": Int
+                   }
+               ],
+               "nearest_location":
+                   {
+                       "id": Int,
+                       "station_name": "Int",
+                       "name": "String",
+                       "administrative_region1": "String",
+                       "administrative_region2": "String",
+                       "country_code": "String",
+                       "longitude": Float,
+                       "latitude": Float
+                   },
+               "geo_location":
+               {
+                   "id": Int,
+                   "station_name": "Int",
+                   "country_code": "String",
+                   "island": "String",
+                   "county": "String",
+                   "place": "String",
+                   "hamlet": "String",
+                   "town": "String",
+                   "municipality": "String",
+                   "state_district": "String",
+                   "administrative": "String",
+                   "state": "String",
+                   "village": "String",
+                   "region": "String",
+                   "province": "String",
+                   "city": "String",
+                   "locality": "String",
+                   "postcode": "Int",
+                   "country": "String"
+               }
+           }
+          }
+        headers: []
+        description: '200'
+      -
+        status: 404
+        content: |-
+          "error": {
+           "code": 404,
+           "message": "No station with that name"
+          }
+        headers: []
+        description: '404'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: stations/getLowestTemperatures
+    metadata:
+      title: 'Get lowest temperatures of the last four weeks.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+           {
+               "max_temp": "Float",
+               "date": "Timestamp",
+               "town": "String"
+           },
+           {
+               "max_temp": "Float",
+               "date": "Timestamp",
+               "town": "String"
+           }
+          ]
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: stations/getPeakWindSpeeds
+    metadata:
+      title: 'Get peak wind speeds of the last four weeks.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+           {
+               "max_wind_speed": "Float",
+               "date": "Timestamp",
+               "town": "String"
+           },
+           {
+               "max_wind_speed": "Float",
+               "date": "Timestamp",
+               "town": "String"
+           }
+          ]
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: stations/getExport
+    metadata:
+      title: 'Get an XML export of the last four weeks'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          <?xml version="1.0" encoding="UTF-8"?>
+          <weather>
+           <Item0>
+               <id>Int</id>
+               <station_name>Int</station_name>
+               <datetime>Timestamp</datetime>
+               <temp>Float</temp>
+               <dew_point_temp>Float</dew_point_temp>
+               <station_air_pressure>Float</station_air_pressure>
+               <sea_level_air_pressure>Float</sea_level_air_pressure>
+               <visibility>Float</visibility>
+               <wind_speed>Float</wind_speed>
+               <precipitation>Float</precipitation>
+               <snow_depth>Float</snow_depth>
+               <cloud_cover_percentage>Float</cloud_cover_percentage>
+               <wind_direction>Int</wind_direction>
+               <frost>Int</frost>
+               <rain>Int</rain>
+               <snow>Int</snow>
+               <hail>Int</hail>
+               <thunderstorm>Int</thunderstorm>
+               <tornado>Int</tornado>
+               <Itemstation>
+                   <name>Int</name>
+                   <longitude>Float</longitude>
+                   <latitude>Float</latitude>
+                   <elevation>Int</elevation>
+               </Itemstation>
+               <Itemgeo_location>
+                   <id>Int</id>
+                   <station_name>Int</station_name>
+                   <country_code>String</country_code>
+                   <island>String</island>
+                   <county>String</county>
+                   <place>String</place>
+                   <hamlet>String</hamlet>
+                   <town>String</town>
+                   <municipality>String</municipality>
+                   <state_district>String</state_district>
+                   <administrative>String</administrative>
+                   <state>String</state>
+                   <village>String</village>
+                   <region>String</region>
+                   <province>String</province>
+                   <city>String</city>
+                   <locality>String</locality>
+                   <postcode>String</postcode>
+                   <country>String</country>
+               </Itemgeo_location>
+               <Itemcorrection>
+                   <Item0>
+                       <id>Int</id>
+                       <weather_data_id>Int</weather_data_id>
+                       <type>String</type>
+                       <original_value>Float</original_value>
+                   </Item0>
+               </Itemcorrection>
+           </Item0>
+          </weather>
+        headers: []
+        description: '200'
     responseFields: []

@@ -14,7 +14,7 @@ use function abort;
 use function config;
 
 /**
- * @group Authenticatie
+ * @group Authentication
  */
 class AuthenticateController extends Controller
 {
@@ -33,10 +33,6 @@ class AuthenticateController extends Controller
      * @response 401 "error": {
      *  "code": 401,
      *  "message": "Invalid credentials."
-     * }
-     * @response 429 "error": {
-     *  "code": 429,
-     *  "message": "Too Many Attempts."
      * }
      **/
     public function basic(Request $request)
@@ -65,10 +61,6 @@ class AuthenticateController extends Controller
      * @response 401 "error": {
      *  "code": 401,
      *  "message": "Unauthorized."
-     * }
-     * @response 429 "error": {
-     *  "code": 429,
-     *  "message": "Too Many Attempts."
      * }
      **/
     public function jwt()
