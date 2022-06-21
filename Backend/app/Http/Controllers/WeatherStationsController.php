@@ -101,7 +101,12 @@ class WeatherStationsController extends Controller
     {
         $station = Station::all()->where('name', '=', $station_name)->first();
         if ($station) {
-            return ['station' => $station, 'measurements' => $station->weatherData];
+            return [
+                'station' => $station, 
+                'measurements' => $station->weatherData, 
+                'nearest_location' => $station->nearestLocation,
+                'geo_location' => $station->geoLocation
+            ];
         } else {
             throw new NotFoundHttpException('No station with that name');
         }
@@ -124,13 +129,13 @@ class WeatherStationsController extends Controller
         $orderedRow = $request->ordered_row ?: 'name';
         $order = $request->order_by === 'desc' ? 'desc' : 'asc';
 
-        if ($orderedRow !== 'name') {
+        if ($orderedRow !== 'name' && $orderedRow !== 'is_active') {
             $stations = Station::join('weather_data', 'station.name', '=', 'weather_data.station_name')
                 ->groupBy('station_name')
                 ->orderByRaw("AVG(${orderedRow}) ${order}")
                 ->paginate(10);
         } else {
-            $stations = Station::paginate(10);
+            $stations = Station::orderBy('name', $order)->paginate(10);
         }
 
         $new_stations = ['data' => []];

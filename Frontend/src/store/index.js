@@ -4,11 +4,11 @@ import { weather } from "@/store/weather";
 import { graph } from "@/store/graph";
 
 const store = createStore({
-    modules: {
-        station,
-        weather,
-        graph
-    },
+  modules: {
+    station,
+    weather,
+    graph,
+  },
 });
 
 export default store;

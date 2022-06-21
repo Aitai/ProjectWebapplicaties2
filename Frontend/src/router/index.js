@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import DashboardView from "../views/DashboardView.vue";
-import SubscriptionSelection from "../views/SubscriptionSelection.vue";
-import RegistrationView from "../views/RegistrationView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,16 +24,6 @@ const router = createRouter({
             path: "/dashboard",
             name: "dashboard",
             component: DashboardView,
-        },
-        {
-            path: "/subscriptionview",
-            name: "register.subscription",
-            component: SubscriptionSelection,
-        },
-        {
-            path: "/registrationview",
-            name: "registration",
-            component: RegistrationView,
         },
     ],
 });

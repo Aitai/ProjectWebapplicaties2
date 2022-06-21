@@ -1,10 +1,10 @@
-# Society of Protection of Birds Front-end
+# Society for the Protection of Birds Front-end
 
-This template should help get you started developing the Vue.js Society of Protection of Birds application.
+This template should help get you started developing the Vue.js Society for the Protection of Birds application.
 
 ## Initial setup
 Copy the `.env.example` file to the same folder and name the file `.env`
-This file should have the file path of the Society of Protection of Birds back-end API (final step of the main README.md).
+This file should have the file path of the Society for the Protection of Birds back-end API (final step of the main README.md).
 
 ### Project Setup
 

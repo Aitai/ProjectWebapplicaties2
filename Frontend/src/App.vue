@@ -4,7 +4,7 @@ import Wrapper from "./components/Wrapper.vue";
 </script>
 
 <template>
-    <Wrapper>
-        <RouterView />
-    </Wrapper>
+  <Wrapper>
+    <RouterView />
+  </Wrapper>
 </template>

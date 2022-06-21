@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class GeoLocation extends Model
+class NearestLocation extends Model
 {
-    public $timestamps = false;
-    protected $table = 'geolocation';
-
+    protected $table = 'nearestlocation';
 
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'country_code', 'country_code');
     }
 
-    public function station(): HasOne
+    public function station(): BelongsTo
     {
-        return $this->hasOne(Station::class, 'name', 'station_name');
+        return $this->belongsTo(Station::class, 'name', 'station_name');
     }
+
+
 }

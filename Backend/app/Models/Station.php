@@ -47,22 +47,22 @@ class Station extends Model
 
     protected $table = 'station';
 
-    //Geeft het timezone object terug
-    public function timezone(): HasOne
-    {
-        return $this->hasOne(Timezone::class, 'timezone_id', 'id');
-    }
-
-    //Geeft een collectie van alle measurements terug
-    public function measurements(): HasMany
-    {
-        return $this->hasMany(Measurement::class, 'id', 'station_id');
-    }
 
     public function weatherData(): HasMany
     {
         return $this->hasMany(WeatherData::class, 'station_name', 'name');
     }
+
+    public function nearestLocation(): HasOne
+    {
+        return $this->hasOne(NearestLocation::class, 'station_name', 'name');
+    }
+
+    public function geoLocation(): HasOne
+    {
+        return $this->hasOne(GeoLocation::class, 'station_name', 'name');
+    }
+
 
     public function isActive(): bool
     {
